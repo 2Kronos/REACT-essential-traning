@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import sanji from "./images/sanji.webp";
 
@@ -39,8 +40,13 @@ function Main({ dishes }) {
 }
 
 function App() {
+  const [status, setStatus] = useState(true);
   return (
     <div>
+      <h1>The Barratiay is {status ? "open" : "closed"}</h1>
+
+      <button onClick={() => setStatus(!status)}>{status ? "Close Barratiay" : "Open Barratiay"}</button>
+
       <Header name="Sunset" year={new Date().getFullYear()} />
       <Main dishes={dishObjects} />
     </div>

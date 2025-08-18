@@ -1,36 +1,50 @@
+import "./App.css";
+import sanji from "./images/sanji.webp";
 
-import './App.css'
-
-function Header({name, year}){
-  
-  return(
+function Header({ name, year }) {
+  return (
     <header>
       <h1>{name} Kitchen</h1>
       <p>Copyright {year} </p>
     </header>
-  )
+  );
 }
 
-const items = [" Macoroni and cheese",
-  "Pizza",
-  "Sushi"
-];
+const items = [" Macoroni and cheese", "Pizza", "Sushi"];
+const dishObjects = items.map((dish, i) => ({
+  id: i,
+  title: dish,
+}));
 
-function Main({dishes}){
-  return(
-    <ul>
-     {dishes.map((dish)=> (<li style={{listStyle: "none"}}>{dish}</li>))}
-    </ul>
-  )
+console.log(dishObjects);
+
+function Main({ dishes }) {
+  return (
+  <>
+    <div>
+      <h2>Welcome to the Baratiay</h2>
+    </div>
+    <main>
+      <img src={sanji} height={200} alt="Sanji" />
+      <ul>
+        {dishes.map((dish) => (
+          <li key={dish.id} style={{ listStyle: "none" }}>
+            {dish.title}
+          </li>
+      ))}
+      </ul>
+    </main>
+  </>
+  );
 }
 
 function App() {
-
-  return ( 
-  <div>
-    <Header name = 'Sunset' year = {new Date().getFullYear()}/>
-    <Main dishes = {items} /> 
-  </div>);
+  return (
+    <div>
+      <Header name="Sunset" year={new Date().getFullYear()} />
+      <Main dishes={dishObjects} />
+    </div>
+  );
 }
 
-export default App
+export default App;
